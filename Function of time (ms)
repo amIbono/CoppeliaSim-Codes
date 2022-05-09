@@ -37,4 +37,4 @@ end
 
 -- This function works without any initial parameter, but it's more complex and maybe will lead to more delay to finish the function, 
 -- you can test the total time spend just removing the "" that's on the function.
--- Both functions will lead to the wait on the process, and will just need the adjust to use the 
+-- Both functions will lead to the wait on the process, and will just need the adjust to implement it on each code, as it don't pause your code when it's working on.

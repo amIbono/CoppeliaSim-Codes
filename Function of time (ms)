@@ -1,0 +1,40 @@
+-- this function is on lua, so maybe if you want to port this to python, just adjust some parameters and it will work.
+-- first it's a time wait that needs to put this initial variable on the sysCall_init()
+
+function sysCall_init()
+    realTimerCounter = sim.getSystemTimeInMs(-1)
+end
+
+function timeOnMs(time)
+    if sim.getSystemTimeInMs(realTimerCounter) >= time then
+        -- you can put whatever code you want here
+        realTimerCounter = sim.getSystemTimeInMs(-1)
+    else
+        return
+    end
+end
+
+-- To call the function simply use timeOnMs(timeonMs) on any part of your code, an example: timeOnMs(1000), to make a wait function with 1000ms, or 1s.
+-- That function is way more shorter, but if you want the larger one and all closed, you can use that other function.
+
+function timeOnMs(time)
+    if firstTimeOnFunction == nil or firstTimeOnFunction == true then
+        firstTimeOnFunction = false
+        realTimerCounter = sim.getSystemTimeInMs(-1)
+        compareRealTimerCounter = sim.getSystemTimeInMs(realTimerCounter)
+        return
+    end
+    if compareRealTimerCounter >= time then
+        firstTimeOnFunction = true
+        "print(compareRealTimerCounter)"
+        return
+    end
+    if firstTimeOnFunction == false then
+        compareRealTimerCounter = sim.getSystemTimeInMs(realTimerCounter)
+        return
+    end
+end
+
+-- This function works without any initial parameter, but it's more complex and maybe will lead to more delay to finish the function, 
+-- you can test the total time spend just removing the "" that's on the function.
+-- Both functions will lead to the wait on the process, and will just need the adjust to use the 

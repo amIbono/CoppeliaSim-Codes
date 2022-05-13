@@ -30,7 +30,7 @@ function timeOnMs(time)
     end
     if compareRealTimerCounter >= time then
         firstTimeOnFunction = true
-        "print(compareRealTimerCounter)"
+        print(compareRealTimerCounter)
         return
     end
     if firstTimeOnFunction == false then
